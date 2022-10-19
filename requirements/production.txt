@@ -1,0 +1,62 @@
+# django
+django==4.0.7
+djangorestframework==3.12.4
+djangorestframework-simplejwt==5.2.0
+
+# rq
+django-rq==2.4.1
+rq-scheduler==0.11.0
+
+# project configuration
+django-split-settings==1.0.1
+
+# logging
+django-prometheus==2.1.0
+django-prometheus==2.1.0
+
+# database
+psycopg2==2.8.6
+
+# docs
+drf-spectacular==0.15.1
+
+# server
+daphne==4.0.0b1
+whitenoise==5.2.0
+
+# docs
+drf-spectacular==0.15.1
+
+# pdf generation
+# reportlab==3.6.9
+
+# server
+daphne==4.0.0b1
+whitenoise==5.2.0
+
+# security
+argon2-cffi==20.1.0
+cryptography==3.4.7
+devicecheck==1.2.0
+pyjwt==2.4.0
+
+# phonenumbers
+django-phonenumber-field==5.1.0
+phonenumbers==8.12.21
+
+# pytz
+pytz==2021.3
+
+# hiredis==2.0.0
+
+python-gettext==4.0
+
+# lxml
+lxml==4.9.1
+
+# svglib
+svglib==1.2.1
+
+# report generation
+# pandas==1.5.0
+# openpyxl==3.0.10
