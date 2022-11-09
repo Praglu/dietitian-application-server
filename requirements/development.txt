@@ -1,19 +1,16 @@
 -r production.txt
 
 # tests
-pytest==6.2.*
-pytest-django==4.2.*
-pytest-cov==2.11.*
-freezegun==0.1.*
+pytest==7.*
+pytest-django==4.*
+pytest-cov==3.*
+freezegun==1.2.*
 
 # linters
-wemake-python-styleguide==0.15.*
-flake8==3.9.*
-xenon==0.7.*
+wemake-python-styleguide==0.16.*
+flake8==4.*
+xenon==0.9.*
 
 # security
-bandit==1.7.2
-safety==1.10.*
-
-# debugging
-pdbpp==0.10.3
+bandit==1.7.*
+safety==2.2.*
