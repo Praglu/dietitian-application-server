@@ -1,1 +1,44 @@
 version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ./src/:/code/
+    ports:
+      - 8000:8000
+      - 8002:8002
+    env_file:
+      - envs/.docker.env
+    depends_on:
+      - api-database
+      # - api-redis
+
+  api-database:
+    image: postgres:13-alpine
+    env_file:
+      - envs/.docker.env
+    ports:
+      - 5434:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  # api-redis:
+  #   image: redis:6-alpine
+  #   volumes:
+  #     - redis_data:/data
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON_URL=swagger/main.yml
+    ports:
+      - 8001:8080
+    volumes:
+      - ./specification/swagger:/usr/share/nginx/html/swagger
+
+volumes:
+  postgres_data:
+  # redis_data:
