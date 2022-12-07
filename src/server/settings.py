@@ -28,6 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    'server.apps.user',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +94,12 @@ REFRESH_TOKEN_EXPIRE_SECONDS = int(os.getenv('REFRESH_TOKEN_EXPIRE_SECONDS', 60 
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 
@@ -136,6 +147,7 @@ STATIC_URL = 'static/'
 
 ADMIN_ENABLED = os.getenv('ADMIN_ENABLED', 0)
 ADMIN_ROOT_URL = os.getenv('ADMIN_ROOT_URL', 'admin/')
+SWAGGER_ENABLED = int(os.getenv('SWAGGER_ENABLED', 1))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
