@@ -28,13 +28,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # 3rd part
     'drf_spectacular',
     'rest_framework',
     'rest_framework.authtoken',
-
+    # project apps
+    'server.apps.blog',
     'server.apps.common',
-
+    'server.apps.contentblock',
     'server.apps.user',
 ]
 
@@ -160,6 +161,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = '/vol/web/media'
+
+FILE_UPLOAD_PATH = os.getenv('FILE_UPLOAD_PATH', 'file_upload')
 
 ADMIN_ENABLED = os.getenv('ADMIN_ENABLED', 0)
 ADMIN_ROOT_URL = os.getenv('ADMIN_ROOT_URL', 'admin/')
