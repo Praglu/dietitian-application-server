@@ -18,6 +18,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
     CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
 
+CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split(' ')
 
 # Application definition
 
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd part
+    'corsheaders',
     'drf_spectacular',
     'rest_framework',
     'rest_framework.authtoken',
@@ -47,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
