@@ -9,6 +9,7 @@ urlpatterns = [
     path('auth/', include('server.apps.user.auth_urls')),
     path('api/user/', include('server.apps.user.urls')),
     path('api/blog/', include('server.apps.blog.urls')),
+    path('api/content-blocks/', include('server.apps.contentblock.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.SWAGGER_ENABLED:
