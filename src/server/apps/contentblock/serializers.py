@@ -11,7 +11,7 @@ class HomeContentBlockSerializer(serializers.ModelSerializer):
             'img',
             'content',
             'button_text',
-            'blog',
+            'post',
             'button_link'
         ]
         read_only_fields = fields
@@ -25,7 +25,7 @@ class AboutContentBlockSerializer(serializers.ModelSerializer):
             'img',
             'content',
             'button_text',
-            'blog',
+            'post',
             'button_link'
         ]
         read_only_fields = fields

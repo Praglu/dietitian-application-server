@@ -1,7 +1,6 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.exceptions import NotAuthenticated, PermissionDenied
-from rest_framework.permissions import IsAuthenticated
 
 from server.apps.contentblock.models import AboutContentBlock, HomeContentBlock
 from server.apps.contentblock.serializers import AboutContentBlockSerializer, HomeContentBlockSerializer
@@ -10,7 +9,7 @@ from server.apps.common.helpers_exception import exception_schema_dict
 
 class HomeContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = HomeContentBlockSerializer
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = ()
 
     def get_queryset(self):
         return HomeContentBlock.objects.all()
@@ -36,7 +35,7 @@ class HomeContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
 
 class AboutContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AboutContentBlockSerializer
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = ()
 
     def get_queryset(self):
         return AboutContentBlock.objects.all()

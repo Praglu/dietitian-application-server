@@ -10,11 +10,11 @@ def file_storage_path(instance, filename):
     ext = filename.split('.')[-1]
     return os.path.join(
         settings.FILE_UPLOAD_PATH,
-        f'blogs/{uuid.uuid4()}.{ext}',
+        f'posts/{uuid.uuid4()}.{ext}',
     )
 
 
-class Blog(models.Model):
+class Post(models.Model):
     title = models.CharField(
         max_length=128,
         blank=True,

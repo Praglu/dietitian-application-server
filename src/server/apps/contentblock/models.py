@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from server.apps.blog.models import Blog
+from server.apps.blog.models import Post
 
 
 CONTENT_BLOCK_BUTTON_TEXTS = (
@@ -38,8 +38,8 @@ class HomeContentBlock(models.Model):
         choices=CONTENT_BLOCK_BUTTON_TEXTS,
         default=CONTENT_BLOCK_BUTTON_TEXTS[0]
     )
-    blog = models.ForeignKey(
-        Blog,
+    post = models.ForeignKey(
+        Post,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True,
@@ -71,8 +71,8 @@ class AboutContentBlock(models.Model):
         choices=CONTENT_BLOCK_BUTTON_TEXTS,
         default=CONTENT_BLOCK_BUTTON_TEXTS[0]
     )
-    blog = models.ForeignKey(
-        Blog,
+    post = models.ForeignKey(
+        Post,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True,

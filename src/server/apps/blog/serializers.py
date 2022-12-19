@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from server.apps.blog.models import Blog
+from server.apps.blog.models import Post
 
 
-class BlogSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta(object):
-        model = Blog
+        model = Post
         fields = [
             'id',
             'img',
