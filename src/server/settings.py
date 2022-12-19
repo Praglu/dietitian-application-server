@@ -15,8 +15,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = int(os.getenv('DEBUG', 0))
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-CORS_ALLOW_ALL_ORIGINS = True
-
 if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
     CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
 
