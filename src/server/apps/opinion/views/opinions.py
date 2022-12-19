@@ -10,7 +10,8 @@ from server.apps.opinion.seralizers import OpinionSerializer
 
 class OpinionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = OpinionSerializer
-    permission_classes = [IsAuthenticated,]
+    authentication_classes = ()
+    permission_classes = ()
 
     def get_queryset(self):
         return Opinion.objects.all()

@@ -10,7 +10,8 @@ from server.apps.common.helpers_exception import exception_schema_dict
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated,]
+    authentication_classes = ()
+    permission_classes = ()
 
     def get_queryset(self):
         return Post.objects.all()

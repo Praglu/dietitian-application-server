@@ -10,7 +10,8 @@ from server.apps.common.helpers_exception import exception_schema_dict
 
 class HomeContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = HomeContentBlockSerializer
-    permission_classes = [IsAuthenticated,]
+    authentication_classes = ()
+    permission_classes = ()
 
     def get_queryset(self):
         return HomeContentBlock.objects.all()
@@ -36,6 +37,7 @@ class HomeContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
 
 class AboutContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AboutContentBlockSerializer
+    authentication_classes = ()
     permission_classes = ()
 
     def get_queryset(self):
