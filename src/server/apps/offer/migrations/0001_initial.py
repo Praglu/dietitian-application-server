@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import server.apps.offer.models
-import server.apps.offer.validators
+import server.apps.common.validators
 
 
 class Migration(migrations.Migration):
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(blank=True, max_length=128, null=True)),
                 ('short_description', models.CharField(blank=True, max_length=256, null=True)),
                 ('full_description', models.CharField(blank=True, max_length=512, null=True)),
-                ('amount', models.CharField(blank=True, max_length=16, null=True, validators=[server.apps.offer.validators.OnlyDigitsValidator])),
+                ('amount', models.CharField(blank=True, max_length=16, null=True, validators=[server.apps.common.validators.OnlyDigitsValidator])),
             ],
         ),
     ]

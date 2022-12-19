@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from server.apps.offer.validators import OnlyDigitsValidator
+from server.apps.common.validators import OnlyDigitsValidator
 
 
 def file_storage_path(instance, filename):

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # project apps
     'server.apps.blog',
     'server.apps.common',
+    'server.apps.contactform',
     'server.apps.contentblock',
     'server.apps.offer',
     'server.apps.opinion',

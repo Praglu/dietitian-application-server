@@ -1,5 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
+from django.utils.deconstruct import deconstructible
+from django.utils.translation import gettext_lazy
 
 
 class AtLeastOneDigitOrSpecialValidator(object):
@@ -60,3 +62,15 @@ class MinimumLengthValidator(object):
                 code='user__password_too_short',
                 params={'min_length': self.min_length},
             )
+
+
+@deconstructible
+class OnlyDigitsValidator(object):
+    message = gettext_lazy('only_digits_validation_error')
+    code = 'only_digits_validation_error'
+
+    def __call__(self, value):
+        try:
+            int(value)
+        except ValueError:
+            raise ValidationError(self.message, code=self.code, params={})

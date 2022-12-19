@@ -9,6 +9,7 @@ urlpatterns = [
     path('auth/', include('server.apps.user.auth_urls')),
     path('api/user/', include('server.apps.user.urls')),
     path('api/blog/', include('server.apps.blog.urls')),
+    path('api/contact-form', include('server.apps.contactform.urls')),
     path('api/content-blocks/', include('server.apps.contentblock.urls')),
     path('api/offer/', include('server.apps.offer.urls')),
     path('api/opinions/', include('server.apps.opinion.urls')),
