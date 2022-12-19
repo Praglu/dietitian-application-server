@@ -15,6 +15,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = int(os.getenv('DEBUG', 0))
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 # if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
 #     CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
 
@@ -31,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd part
-    # 'corsheaders',
+    'corsheaders',
     'drf_spectacular',
     'rest_framework',
     'rest_framework.authtoken',
@@ -51,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
