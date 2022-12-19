@@ -15,11 +15,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = int(os.getenv('DEBUG', 0))
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
-    CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
+# if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
+#     CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
 
-if cors_origin_whitelist := os.getenv('CORS_ORIGIN_WHITELIST'):
-    CORS_ORIGIN_WHITELIST = cors_origin_whitelist.split()
+# if cors_origin_whitelist := os.getenv('CORS_ORIGIN_WHITELIST'):
+#     CORS_ORIGIN_WHITELIST = cors_origin_whitelist.split()
 
 # Application definition
 
