@@ -52,7 +52,7 @@ class HomeContentBlock(models.Model):
     )
 
     def __str__(self):
-        return f'{self.pk}_{self.content[:30]}'
+        return f'{self.pk} - {self.content[:30]}...'
 
 
 class AboutContentBlock(models.Model):
@@ -85,4 +85,4 @@ class AboutContentBlock(models.Model):
     )
 
     def __str__(self):
-        return f'{self.pk}_{self.content[:30]}'
+        return f'{self.pk} - {self.content[:30]}...'
