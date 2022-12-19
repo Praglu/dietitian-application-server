@@ -9,8 +9,9 @@ from server.apps.blog.models import Post
 
 
 CONTENT_BLOCK_BUTTON_TEXTS = (
-    ('Check offer', 'Check offer'),
-    ('Find out more', 'Find out more'),
+    (None, '---------'),
+    ('Sprawdź ofertę', 'Sprawdź ofertę'),
+    ('Dowiedz się więcej', 'Dowiedz się więcej'),
 )
 
 

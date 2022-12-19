@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/user/', include('server.apps.user.urls')),
     path('api/blog/', include('server.apps.blog.urls')),
     path('api/content-blocks/', include('server.apps.contentblock.urls')),
+    path('api/offer/', include('server.apps.offer.urls')),
     path('api/opinions/', include('server.apps.opinion.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

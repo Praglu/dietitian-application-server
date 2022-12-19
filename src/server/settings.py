@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'server.apps.blog',
     'server.apps.common',
     'server.apps.contentblock',
+    'server.apps.offer',
     'server.apps.opinion',
     'server.apps.user',
 ]
