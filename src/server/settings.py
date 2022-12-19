@@ -17,11 +17,11 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
-#     CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
+if cors_allowed_origins := os.getenv('CORS_ALLOWED_ORIGINS'):
+    CORS_ALLOWED_ORIGINS = cors_allowed_origins.split()
 
-# if cors_origin_whitelist := os.getenv('CORS_ORIGIN_WHITELIST'):
-#     CORS_ORIGIN_WHITELIST = cors_origin_whitelist.split()
+if cors_origin_whitelist := os.getenv('CORS_ORIGIN_WHITELIST'):
+    CORS_ORIGIN_WHITELIST = cors_origin_whitelist.split()
 
 # Application definition
 

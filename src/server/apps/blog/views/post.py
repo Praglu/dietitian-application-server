@@ -1,6 +1,7 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.exceptions import NotAuthenticated, PermissionDenied
+from rest_framework.permissions import IsAuthenticated
 
 from server.apps.blog.models import Post
 from server.apps.blog.serializers import PostSerializer
@@ -9,7 +10,7 @@ from server.apps.common.helpers_exception import exception_schema_dict
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = ()
+    permission_classes = [IsAuthenticated,]
 
     def get_queryset(self):
         return Post.objects.all()

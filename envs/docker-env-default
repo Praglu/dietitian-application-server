@@ -3,7 +3,8 @@ DJANGO_ENV=development
 SECRET_KEY='PLEASE-CHANGE-THIS'
 API_KEY='PLEASE-CHANGE-THIS'
 ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-CORS_ALLOWED_ORIGINS=http://localhost:8000 http://127.0.0.1:8000
+CORS_ALLOWED_ORIGINS=http://localhost:8000 http://127.0.0.1:8000 http://localhost:3000 http://127.0.0.1:3000
+CORS_ORIGIN_WHITELIST=http://localhost:3000 http://127.0.0.1:3000
 ADMIN_ENABLED=1
 
 DATABASE=postgres
