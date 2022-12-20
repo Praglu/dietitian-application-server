@@ -169,9 +169,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/vol/web/media'
+# MEDIA_ROOT = '/vol/web/media'
 
 FILE_UPLOAD_PATH = os.getenv('FILE_UPLOAD_PATH', 'file_upload')
 

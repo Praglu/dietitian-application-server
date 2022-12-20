@@ -8,19 +8,19 @@ from django.utils.translation import gettext_lazy as _
 from server.apps.blog.models import Post
 
 
-CONTENT_BLOCK_BUTTON_TEXTS = (
-    (None, '---------'),
-    ('Sprawdź ofertę', 'Sprawdź ofertę'),
-    ('Dowiedz się więcej', 'Dowiedz się więcej'),
-)
-
-
 def file_storage_path(instance, filename):
     ext = filename.split('.')[-1]
     return os.path.join(
         settings.FILE_UPLOAD_PATH,
         f'contentblocks/{uuid.uuid4()}.{ext}',
     )
+
+
+class ContentBlockButtonText(models.IntegerChoices):
+    CHECK_OFFER = 0, _('Check offer')
+    FIND_OUT_MORE = 1, _('Find out more')
+
+    __empty__ = _('(unknown)')
 
 
 class HomeContentBlock(models.Model):
@@ -34,10 +34,9 @@ class HomeContentBlock(models.Model):
         null=True,
         blank=True,
     )
-    button_text = models.CharField(
-        max_length=32,
-        choices=CONTENT_BLOCK_BUTTON_TEXTS,
-        default=CONTENT_BLOCK_BUTTON_TEXTS[0]
+    button_text = models.IntegerField(
+        choices=ContentBlockButtonText.choices,
+        default=ContentBlockButtonText.__empty__
     )
     post = models.ForeignKey(
         Post,
@@ -67,10 +66,9 @@ class AboutContentBlock(models.Model):
         null=True,
         blank=True,
     )
-    button_text = models.CharField(
-        max_length=32,
-        choices=CONTENT_BLOCK_BUTTON_TEXTS,
-        default=CONTENT_BLOCK_BUTTON_TEXTS[0]
+    button_text = models.IntegerField(
+        choices=ContentBlockButtonText.choices,
+        default=ContentBlockButtonText.__empty__
     )
     post = models.ForeignKey(
         Post,

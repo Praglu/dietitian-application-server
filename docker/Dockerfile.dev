@@ -24,7 +24,6 @@ RUN pip install -r requirements/development.txt
 COPY src /code
 COPY daphne.supervisor.conf /etc/supervisor/conf.d/
 RUN mkdir /run/daphne
-RUN mkdir -p /vol/web/media
 COPY bin/entrypoint.dev.sh /bin/
 RUN chmod +x /bin/entrypoint.dev.sh
 
