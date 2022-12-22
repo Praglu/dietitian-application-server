@@ -8,6 +8,7 @@ from server.apps.contactform.errors import (
 )
 from server.apps.contactform.models import ContactForm
 from server.datastore.commands.abstract import AbstractCommand
+from server.services.email import EmailService
 
 
 class ContactFormCommand(AbstractCommand):
@@ -39,4 +40,10 @@ class ContactFormCommand(AbstractCommand):
         )
 
     def _send_email(self):
-        pass
+        context = {
+            'first_and_last_name': self.first_and_last_name,
+            'email': self.email,
+            'phone': self.phone,
+            'message': self.message,
+        }
+        EmailService.send_contact_form_message(context=context)

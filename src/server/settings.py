@@ -1,8 +1,8 @@
 import os
-from pathlib import Path
+from pathlib import PurePath
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = PurePath(__file__).parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'code/server/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'server/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -205,3 +205,12 @@ LOGGING = {
         },
     },
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST', '')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+EMAIL_PORT = os.getenv('EMAIL_PORT', '')
+# only one can be set true
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
