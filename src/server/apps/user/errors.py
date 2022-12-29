@@ -42,3 +42,24 @@ class ServiceTermsNotApprovedError(ValidationError):
     _text = _('user__service_terms_are_not_approved')
     _title = _('user__service_terms_are_not_approved_title')
     default_code = default_detail
+
+
+class EmailFieldEmptyError(ValidationError):
+    default_detail = 'user__email_field_cannot_be_empty'
+    _text = _('user__email_field_cannot_be_empty')
+    _title = _('user__email_field_cannot_be_empty_title')
+    default_code = default_detail
+
+
+class FirstNameFieldEmptyError(ValidationError):
+    default_detail = 'user__first_name_field_cannot_be_empty'
+    _text = _('user__first_name_field_cannot_be_empty')
+    _title = _('user__first_name_field_cannot_be_empty_title')
+    default_code = default_detail
+
+
+class LastNameFieldEmptyError(ValidationError):
+    default_detail = 'user__last_name_field_cannot_be_empty'
+    _text = _('user__last_name_field_cannot_be_empty')
+    _title = _('user__last_name_field_cannot_be_empty_title')
+    default_code = default_detail

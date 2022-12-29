@@ -1,2 +1,2 @@
 #!/bin/sh
-docker-compose run --rm api ./check_db.sh
+docker-compose run --rm backend-api ./check_db.sh

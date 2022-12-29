@@ -7,7 +7,7 @@ services:
   #     dockerfile: docker/Dockerfile
   #   ports:
   #     - 3000:3000
-  api:
+  backend-api:
     build:
       context: ./
       dockerfile: docker/Dockerfile.dev
@@ -19,11 +19,11 @@ services:
     env_file:
       - envs/.docker.env
     depends_on:
-      - api-database
-      # - api-redis
+      - backend-database
+      # - backend-redis
 
-  api-database:
-    image: postgres:13-alpine
+  backend-database:
+    image: postgres:15-alpine
     env_file:
       - envs/.docker.env
     ports:
@@ -31,7 +31,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
-  # api-redis:
+  # backend-redis:
   #   image: redis:6-alpine
   #   volumes:
   #     - redis_data:/data

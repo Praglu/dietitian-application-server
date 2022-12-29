@@ -49,7 +49,7 @@ class ContactFormView(viewsets.ViewSet):
     )
     def send_contact_form(self, request, **kwargs):
         payload_serializer = ContactFormPayloadSerializer(data=request.data)
-        payload_serializer.is_valid(raise_exception=True)
+        payload_serializer.is_valid(raise_exception=False)
         command = ContactFormCommand(
             first_and_last_name=payload_serializer.data['first_and_last_name'],
             email=payload_serializer.data['email'],

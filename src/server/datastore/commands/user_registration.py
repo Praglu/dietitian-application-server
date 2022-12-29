@@ -5,6 +5,9 @@ from django.core.exceptions import ValidationError
 
 from server.apps.user.enums import UserGroup
 from server.apps.user.errors import (
+    EmailFieldEmptyError,
+    FirstNameFieldEmptyError,
+    LastNameFieldEmptyError,
     PasswordRequiresDigitOrSpecialCharacterError,
     PasswordRequiresLowerCaseLetterError,
     PasswordRequiresUpperCaseLetterError,
@@ -12,12 +15,7 @@ from server.apps.user.errors import (
     ServiceTermsNotApprovedError,
     WrongPasswordRepeatError,
 )
-from server.apps.common.validators import (
-    AtLeastOneDigitOrSpecialValidator,
-    AtLeastOneLowerValidator,
-    AtLeastOneUpperValidator,
-    MinimumLengthValidator,
-)
+from server.apps.user.models import BonusUser
 from server.datastore.commands.abstract import AbstractCommand
 
 
@@ -32,21 +30,32 @@ class UserRegistrationCommand(AbstractCommand):
     def __init__(
         self, 
         email,
-        first_name,
-        last_name,
         password,
         password_repeat,
+        first_name,
+        last_name,
+        phone,
+        street,
+        house_number,
+        city,
+        post_code,
         are_service_terms_approved
     ):  # noqa: WPS211
         self.email = email
-        self.first_name = first_name
-        self.last_name = last_name
         self.password = password
         self.password_repeat = password_repeat
+        self.first_name = first_name
+        self.last_name = last_name
+        self.phone = phone
+        self.street = street
+        self.house_number = house_number
+        self.city = city
+        self.post_code = post_code
         self.are_service_terms_approved = are_service_terms_approved
 
     def register_user(self):
         self._validate_passwords()
+        self._validate_fields()
         self._check_service_terms()
         self._create_user()
         self._add_user_to_group()
@@ -55,11 +64,15 @@ class UserRegistrationCommand(AbstractCommand):
     def _validate_passwords(self):
         if self.password != self.password_repeat:
             raise WrongPasswordRepeatError
-        # AtLeastOneDigitOrSpecialValidator(self.password),
-        # AtLeastOneLowerValidator(self.password),
-        # AtLeastOneUpperValidator(self.password),
-        # MinimumLengthValidator(self.password),
         self._validate_password()
+
+    def _validate_fields(self):
+        if not self.email:
+            raise EmailFieldEmptyError
+        if not self.first_name:
+            raise FirstNameFieldEmptyError
+        if not self.last_name:
+            raise LastNameFieldEmptyError
 
     def _check_service_terms(self):
         if not self.are_service_terms_approved:
@@ -76,6 +89,16 @@ class UserRegistrationCommand(AbstractCommand):
         )
         self.user.set_password(self.password)
         self.user.save()
+
+        self.bonus_user = BonusUser.objects.create(
+            user=self.user,
+            phone=self.phone,
+            street=self.street,
+            house_number=self.house_number,
+            city=self.city,
+            post_code=self.post_code,
+        )
+        self.bonus_user.save()
 
     def _add_user_to_group(self):
         try:

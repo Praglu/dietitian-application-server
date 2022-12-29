@@ -8,12 +8,12 @@ CORS_ORIGIN_WHITELIST=http://localhost:3000 http://127.0.0.1:3000
 ADMIN_ENABLED=1
 
 DATABASE=postgres
-POSTGRES_HOST=api-database
+POSTGRES_HOST=backend-database
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres_user
 POSTGRES_PASSWORD=postgres_password
 POSTGRES_DB=postgres_db
 
-# REDIS_ON=1
-# REDIS_HOST=api-redis
-# REDIS_PORT=6379
+REDIS_ON=0
+REDIS_HOST=backend-redis
+REDIS_PORT=6379
