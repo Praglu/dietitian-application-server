@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework.exceptions import NotAuthenticated, PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 
-from server.apps.contentblock.models import AboutContentBlock, HomeContentBlock
+from server.apps.contentblock.models import FinalAboutContentBlock, HomeContentBlock
 from server.apps.contentblock.serializers import AboutContentBlockSerializer, HomeContentBlockSerializer
 from server.apps.common.helpers_exception import exception_schema_dict
 
@@ -41,7 +41,7 @@ class AboutContentBlockViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = ()
 
     def get_queryset(self):
-        return AboutContentBlock.objects.all()
+        return FinalAboutContentBlock.objects.all()
 
     @extend_schema(
         responses={

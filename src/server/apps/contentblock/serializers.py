@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from server.apps.contentblock.models import AboutContentBlock, HomeContentBlock
+from server.apps.contentblock.models import FinalAboutContentBlock, HomeContentBlock
 
 
 class HomeContentBlockSerializer(serializers.ModelSerializer):
@@ -18,14 +18,12 @@ class HomeContentBlockSerializer(serializers.ModelSerializer):
 
 
 class AboutContentBlockSerializer(serializers.ModelSerializer):
+    first_section_details = serializers.ReadOnlyField(source='first_section.values')
+    second_section_details = serializers.ReadOnlyField(source='second_section.values')
     class Meta(object):
-        model = AboutContentBlock
+        model = FinalAboutContentBlock
         fields = [
-            'id',
-            'img',
-            'content',
-            'button_text',
-            'post',
-            'button_link'
+            'first_section_details',
+            'second_section_details',
         ]
         read_only_fields = fields

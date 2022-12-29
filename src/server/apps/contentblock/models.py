@@ -16,11 +16,11 @@ def file_storage_path(instance, filename):
     )
 
 
-class ContentBlockButtonText(models.IntegerChoices):
-    CHECK_OFFER = 0, _('Check offer')
-    FIND_OUT_MORE = 1, _('Find out more')
-
-    __empty__ = _('(unknown)')
+CONTENT_BLOCK_BUTTON_TEXT_CHOICES = (
+    ('', '-------'),
+    ('Check offer', 'Sprawdź ofertę'),
+    ('Find out more', 'Dowiedz się więcej'),
+)
 
 
 class HomeContentBlock(models.Model):
@@ -34,9 +34,11 @@ class HomeContentBlock(models.Model):
         null=True,
         blank=True,
     )
-    button_text = models.IntegerField(
-        choices=ContentBlockButtonText.choices,
-        default=ContentBlockButtonText.__empty__
+    button_text = models.CharField(
+        max_length=128,
+        choices=CONTENT_BLOCK_BUTTON_TEXT_CHOICES,
+        null=True,
+        blank=True,
     )
     post = models.ForeignKey(
         Post,
@@ -46,16 +48,49 @@ class HomeContentBlock(models.Model):
     )
     button_link = models.CharField(
         max_length=128,
-        default='http://localhost:8002/api/offer',
+        default="",
         null=True,
         blank=True,
     )
+
+    def save(self, *args, **kwargs):
+        if self.post is not None:
+            self.button_link = f'/blog/post/{self.post.pk}'
+        else:
+            self.button_link = f'/offer'
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.pk} - {self.content[:30]}...'
 
 
-class AboutContentBlock(models.Model):
+class FirstSectionAboutContentBlock(models.Model):
+    img = models.FileField(
+        upload_to=file_storage_path,
+        null=True,
+        blank=True,
+    )
+    title = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+    )
+    content_1 = models.CharField(
+        max_length=512,
+        null=True,
+        blank=True,
+    )
+    content_2 = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return f'{self.pk} - {self.content_1[:30]}...'
+
+
+class SecondSectionAboutContentBlock(models.Model):
     img = models.FileField(
         upload_to=file_storage_path,
         null=True,
@@ -66,9 +101,11 @@ class AboutContentBlock(models.Model):
         null=True,
         blank=True,
     )
-    button_text = models.IntegerField(
-        choices=ContentBlockButtonText.choices,
-        default=ContentBlockButtonText.__empty__
+    button_text = models.CharField(
+        max_length=128,
+        choices=CONTENT_BLOCK_BUTTON_TEXT_CHOICES,
+        null=True,
+        blank=True,
     )
     post = models.ForeignKey(
         Post,
@@ -78,10 +115,25 @@ class AboutContentBlock(models.Model):
     )
     button_link = models.CharField(
         max_length=128,
-        default='http://localhost:8002/api/offer',
+        default="",
         null=True,
         blank=True,
     )
 
+    def save(self, *args, **kwargs):
+        if self.post is not None:
+            self.button_link = f'/blog/post/{self.post.pk}'
+        else:
+            self.button_link = f'/offer'
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.pk} - {self.content[:30]}...'
+
+
+class FinalAboutContentBlock(models.Model):
+    first_section = models.ManyToManyField(FirstSectionAboutContentBlock)
+    second_section = models.ManyToManyField(SecondSectionAboutContentBlock)
+
+    def __str__(self):
+        return f'Content blocks with ID: {self.pk}'
