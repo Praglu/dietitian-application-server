@@ -16,13 +16,13 @@ class FinalAboutContentBlockForm(forms.ModelForm):
         model = FinalAboutContentBlock
         fields = '__all__'
 
-    def clean_first_section(self):
-        first_section = self.cleaned_data.get('first_section', [])
-        if len(first_section) != 1:
-            raise ValidationError(
-                _('There can be only one Content Block in First Section'),
-            )
-        return self.cleaned_data.get('first_section')
+    # def clean_first_section(self):
+    #     first_section = self.cleaned_data.get('first_section', [])
+    #     if len(first_section) != 1:
+    #         raise ValidationError(
+    #             _('There can be only one Content Block in First Section'),
+    #         )
+    #     return self.cleaned_data.get('first_section')
 
 
 class FinalAboutContentBlockAdmin(admin.ModelAdmin):

@@ -18,8 +18,8 @@ def file_storage_path(instance, filename):
 
 CONTENT_BLOCK_BUTTON_TEXT_CHOICES = (
     ('', '-------'),
-    ('Check offer', 'Sprawdź ofertę'),
-    ('Find out more', 'Dowiedz się więcej'),
+    ('Sprawdź ofertę', 'Sprawdź ofertę'),
+    ('Dowiedz się więcej', 'Dowiedz się więcej'),
 )
 
 
@@ -55,9 +55,9 @@ class HomeContentBlock(models.Model):
 
     def save(self, *args, **kwargs):
         if self.post is not None:
-            self.button_link = f'/blog/post/{self.post.pk}'
+            self.button_link = f'/blog/{self.post.pk}'
         else:
-            self.button_link = f'/offer'
+            self.button_link = f'/oferta'
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -122,9 +122,9 @@ class SecondSectionAboutContentBlock(models.Model):
 
     def save(self, *args, **kwargs):
         if self.post is not None:
-            self.button_link = f'/blog/post/{self.post.pk}'
+            self.button_link = f'/blog/{self.post.pk}'
         else:
-            self.button_link = f'/offer'
+            self.button_link = f'/oferta'
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -132,7 +132,12 @@ class SecondSectionAboutContentBlock(models.Model):
 
 
 class FinalAboutContentBlock(models.Model):
-    first_section = models.ManyToManyField(FirstSectionAboutContentBlock)
+    first_section = models.ForeignKey(
+        FirstSectionAboutContentBlock,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     second_section = models.ManyToManyField(SecondSectionAboutContentBlock)
 
     def __str__(self):
