@@ -1,5 +1,3 @@
-from django.contrib.auth.models import User
-
 from drf_spectacular.utils import extend_schema
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -20,7 +18,6 @@ from server.apps.user.errors import (
     WrongPasswordRepeatError,
 )
 from server.apps.user.models import BonusUser
-from server.apps.user.permissions import IsCustomerPermission
 from server.apps.user.serializers.user_profile import UserProfileSerializer
 from server.apps.user.serializers.user_registration import UserRegistrationPayloadSerializer
 from server.datastore.commands.user_registration import UserRegistrationCommand

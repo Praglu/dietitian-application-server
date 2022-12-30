@@ -51,4 +51,4 @@ class Offer(models.Model):
         return f'{self.amount} PLN'
 
     def __str__(self):
-        return f'{self.pk} - {self.title}...'
+        return f'id:{self.pk} - {self.title}...'

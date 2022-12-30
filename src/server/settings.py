@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'server.apps.contentblock',
     'server.apps.offer',
     'server.apps.opinion',
+    'server.apps.order',
     'server.apps.user',
 ]
 

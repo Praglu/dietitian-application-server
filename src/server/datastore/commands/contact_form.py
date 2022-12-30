@@ -1,9 +1,6 @@
-
-
 from server.apps.contactform.errors import (
     FirstAndLastNameFieldEmptyError,
     EmailFieldEmptyError,
-    PhoneFieldEmptyError,
     MessageFieldEmptyError,
 )
 from server.apps.contactform.models import ContactForm

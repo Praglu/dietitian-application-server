@@ -70,3 +70,15 @@ class EmailService(BaseEmailService):
             'context': context,
         }
         return cls._send(**email_options)
+
+    @classmethod
+    def send_confirmation_order_message(cls, context):
+        email_options = {
+            'subject_template_name': 'emails/orders/new_order_subject.txt',
+            'email_template_name': 'emails/orders/new_order_email.html',
+            'from_email': EMAIL_HOST_USER,
+            'to_email': context.get('email'),
+            'html_email_template_name': None,
+            'context': context,
+        }
+        return cls._send(**email_options)
