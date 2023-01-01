@@ -1,5 +1,6 @@
 from datetime import datetime
 import uuid
+from server.apps.offer.models import Offer
 
 from server.apps.order.models import Order
 from server.apps.order.validators import ProductsJsonValidator
@@ -39,9 +40,27 @@ class MakeNewOrderCommand(AbstractCommand):
 
     def make_new_order(self):
         # self._validate_products()
+        self._filter_products()
         self._get_user()
         self._make_order()
         self._send_confirmation_email()
+
+    def _get_products_ids(self):
+        products_ids = []
+        try:
+            for product in self.products:
+                products_ids.append(product['id'])
+        except:
+            pass
+        return products_ids
+
+    def _filter_products(self):
+        try:
+            self.full_products = Offer.objects.filter(
+                pk__in=self._get_products_ids()
+            )
+        except:
+            self.full_products = None
 
     def _get_user(self):
         try:
@@ -69,6 +88,8 @@ class MakeNewOrderCommand(AbstractCommand):
             sum=self.sum,
             additional_info=self.additional_info
         )
+        self.new_order.products.set(self.full_products)
+        self.new_order.save()
 
     def _send_confirmation_email(self):
         context = {
