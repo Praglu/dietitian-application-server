@@ -21,6 +21,16 @@ def default_products_with_quantity():
     ]
 
 
+class ProductWithQuantity(models.Model):
+    offer = models.ForeignKey(
+        Offer,
+        on_delete=models.DO_NOTHING,
+        blank=False,
+        null=True,
+    )
+    quantity = models.IntegerField(default=1, blank=False, null=True)
+
+
 class Order(models.Model):
     uuid = models.UUIDField(null=True, unique=True, editable=False)
     user = models.ForeignKey(
@@ -70,7 +80,7 @@ class Order(models.Model):
     )
     are_service_terms_accepted = models.BooleanField(default=False)
     date_of_order = models.DateTimeField(null=True, blank=True)
-    products = models.ManyToManyField(Offer)
+    products = models.ManyToManyField(ProductWithQuantity)
     products_with_quantity = models.JSONField(
         default=default_products_with_quantity,
         null=True,
