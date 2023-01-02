@@ -1,6 +1,24 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from server.apps.order.errors import (
+    FirstNameContainsDigitsError,
+    LastNameContainsDigitsError,
+    HouseNumberContainsSpaces,
+    PostCodeDigitsInIncorrectPlacesError,
+    PostCodeIncorrectFormatError,
+    PhoneContainsNotDigitsError,
+    ServiceTermsNotAcceptedError,
+    ProductHasInvalidFieldsError,
+    ProductHasNoIdFieldError,
+    ProductHasNoQuantityFieldError,
+    ProductIdIsNotIntegerError,
+    ProductQuantityIsNotIntegerError,
+    ProductsWithQuantityIsNotListError,
+    IncorrectPaymentMethodError,
+    SumIsNotNumberError,
+)
+
 
 class OrderPayloadSerializer(serializers.Serializer):
     first_name = serializers.CharField()
@@ -14,101 +32,63 @@ class OrderPayloadSerializer(serializers.Serializer):
     are_service_terms_accepted = serializers.BooleanField(default=False)
     additional_info = serializers.CharField()
     products = serializers.ListField()
+    payment_method = serializers.CharField()
     sum = serializers.CharField()
 
     def validate_first_name(self, value):
         for letter in value:
             if letter.isnumeric():
-                raise serializers.ValidationError(
-                    _('First name cannot contain numbers!'),
-                    code='order__first_name_cannot_contain_numbers',
-                )
+                raise FirstNameContainsDigitsError
         return value
 
     def validate_last_name(self, value):
         for letter in value:
             if letter.isnumeric():
-                raise serializers.ValidationError(
-                    _('Last cannot contain numbers!'),
-                    code='order__last_name_cannot_contain_numbers',
-                )
+                raise LastNameContainsDigitsError
         return value
 
     def validate_products(self, value):
         for product in value:
             if not isinstance(product, dict):
-                    raise serializers.ValidationError(
-                        _('Elements of the list must be dicts!'),
-                        code='products_with_quantity__elements_must_be_dicts',
-                    )
+                    raise ProductsWithQuantityIsNotListError
             try:
                 if not isinstance(product['id'], int):
-                    raise serializers.ValidationError(
-                        _('Product id must be an integer!'),
-                        code='product_with_quantity__id_must_be_int',
-                    )
+                    raise ProductIdIsNotIntegerError
             except KeyError:
-                raise serializers.ValidationError(
-                        _('Product must have an id field!'),
-                        code='product_with_quantity__no_id_field',
-                    )
+                raise ProductHasNoIdFieldError
             try:
                 if not isinstance(product['quantity'], int):
-                    raise serializers.ValidationError(
-                        _('Product quantity must be an integer!'),
-                        code='product_with_quantity__quantity_must_be_int',
-                    )
+                    raise ProductQuantityIsNotIntegerError
             except KeyError:
-                raise serializers.ValidationError(
-                        _('Product must have a quantity field!'),
-                        code='product_with_quantity__no_quantity_field',
-                    )
+                raise ProductHasNoQuantityFieldError
             if len(product) > 2:
-                raise serializers.ValidationError(
-                    _('Product must have only 2 fields: id and quantity!'),
-                    code='product_with_quantity__to_many_fields',
-                )
+                raise ProductHasInvalidFieldsError
         return value
     
     def validate_are_service_terms_accepted(self, value):
         if value != True:
-            raise serializers.ValidationError(
-                _('Service terms must be accepted'),
-                code='order__service_terms_not_accepted',
-            )
+            raise ServiceTermsNotAcceptedError
         return value
 
     def validate_phone(self, value):
         for digit in value:
             if not digit.isnumeric():
-                raise serializers.ValidationError(
-                    _('Number must contain digits only!'),
-                    code='order__phone_must_contain_only_digits',
-                )
+                raise PhoneContainsNotDigitsError
         return value
 
     def validate_house_number(self, value):
         for char in value:
             if char.isspace():
-                raise serializers.ValidationError(
-                    _('House number cannot contain spaces!'),
-                    code='order__house_number_cannot_contain_space',
-                )
+                raise HouseNumberContainsSpaces
         return value
 
     def validate_post_code(self, value):
         if len(value) != 6 or value[2] != '-':
-            raise serializers.ValidationError(
-                _('Post code format is incorrect!'),
-                code='order__post_code_format_incorrect',
-            )
+            raise PostCodeIncorrectFormatError
         i = 0
         for digit in value:
             if not digit.isnumeric():
                 if i != 2:
-                    raise serializers.ValidationError(
-                        _('Post code must contain digits in correct places!'),
-                        code='order__post_code_must_contain_numbers_in_correct_places',
-                    )
+                    raise PostCodeDigitsInIncorrectPlacesError
             i += 1
         return value

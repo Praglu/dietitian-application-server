@@ -51,6 +51,7 @@ class NewOrderView(viewsets.ViewSet):
             are_service_terms_accepted=payload_serializer.data['are_service_terms_accepted'],
             additional_info=payload_serializer.data['additional_info'],
             products=payload_serializer.data['products'],
+            payment_method=payload_serializer.data['payment_method'],
             sum=payload_serializer.data['sum'],
         )
         command.make_new_order()

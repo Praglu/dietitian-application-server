@@ -23,6 +23,7 @@ class MakeNewOrderCommand(AbstractCommand):
         are_service_terms_accepted,
         additional_info,
         products,
+        payment_method,
         sum,
     ):
         self.first_name = first_name
@@ -36,32 +37,14 @@ class MakeNewOrderCommand(AbstractCommand):
         self.are_service_terms_accepted = are_service_terms_accepted
         self.additional_info = additional_info
         self.products = products
+        self.payment_method = payment_method
         self.sum = sum
 
     def make_new_order(self):
-        # self._validate_products()
-        # self._filter_products()
         self._make_product_with_quantity()
         self._get_user()
         self._make_order()
         self._send_confirmation_email()
-
-    # def _get_products_ids(self):
-    #     products_ids = []
-    #     try:
-    #         for product in self.products:
-    #             products_ids.append(product['id'])
-    #     except:
-    #         pass
-    #     return products_ids
-
-    # def _filter_products(self):
-    #     try:
-    #         self.full_products = Offer.objects.filter(
-    #             pk__in=self._get_products_ids()
-    #         )
-    #     except:
-    #         self.full_products = None
 
     def _make_product_with_quantity(self):
         self.chosen_products = []
@@ -99,6 +82,7 @@ class MakeNewOrderCommand(AbstractCommand):
             date_of_order=datetime.utcnow(),
             products_with_quantity=self.products,
             sum=self.sum,
+            payment_method=self.payment_method,
             additional_info=self.additional_info
         )
         self.new_order.products.set(self.chosen_products)

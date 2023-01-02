@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from server.apps.offer.serializers import OfferSerializer
 from server.apps.order.models import Order, ProductWithQuantity
 
 
@@ -43,6 +42,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'phone',
             'are_service_terms_accepted',
             'additional_info',
+            'payment_method',
             'sum',
         ]
         read_only_fields = fields

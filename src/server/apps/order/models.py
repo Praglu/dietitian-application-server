@@ -8,6 +8,12 @@ from server.apps.order.validators import ProductsJsonValidator
 from server.apps.user.models import BonusUser
 
 
+PAYMENT_METHOD_CHOICES = (
+    ('', '------'),
+    ('Przelew tradycyjny', 'Przelew tradycyjny'),
+)
+
+
 def default_products_with_quantity():
     return [
         {
@@ -95,6 +101,12 @@ class Order(models.Model):
         null=True,
         blank=True,
         help_text=_('Sum will appear after saving this object')
+    )
+    payment_method = models.CharField(
+        max_length=128,
+        choices=PAYMENT_METHOD_CHOICES,
+        null=True,
+        blank=True,
     )
     additional_info = models.CharField(
         max_length=512,
