@@ -12,21 +12,27 @@ class OrderPayloadSerializer(serializers.Serializer):
     email = serializers.EmailField()
     phone = serializers.CharField()
     are_service_terms_accepted = serializers.BooleanField(default=False)
-    additional_info = serializers.CharField(required=False)
+    additional_info = serializers.CharField()
     products = serializers.ListField()
     sum = serializers.CharField()
 
     def validate_first_name(self, value):
-        if value is None or value == '':
-            raise serializers.ValidationError(
-                _('First name cannot be empty!'),
-                code='order__first_name_cannot_be_empty',
-            )
+        for letter in value:
+            if letter.isnumeric():
+                raise serializers.ValidationError(
+                    _('First name cannot contain numbers!'),
+                    code='order__first_name_cannot_contain_numbers',
+                )
         return value
 
-    def validate_additional_info(self, value):
-        if value is None:
-            pass
+    def validate_last_name(self, value):
+        for letter in value:
+            if letter.isnumeric():
+                raise serializers.ValidationError(
+                    _('Last cannot contain numbers!'),
+                    code='order__last_name_cannot_contain_numbers',
+                )
+        return value
 
     def validate_products(self, value):
         for product in value:
