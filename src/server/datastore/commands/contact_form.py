@@ -1,8 +1,3 @@
-from server.apps.contactform.errors import (
-    FirstAndLastNameFieldEmptyError,
-    EmailFieldEmptyError,
-    MessageFieldEmptyError,
-)
 from server.apps.contactform.models import ContactForm
 from server.datastore.commands.abstract import AbstractCommand
 from server.services.email import EmailService
@@ -16,19 +11,10 @@ class ContactFormCommand(AbstractCommand):
         self.message = message
 
     def send_contact_form(self):
-        self._validate_fields()
-        self._fill_db()
+        self._create_contact_form_object()
         self._send_email()
 
-    def _validate_fields(self):
-        if self.first_and_last_name is None or self.first_and_last_name == '':
-            raise FirstAndLastNameFieldEmptyError
-        if self.email is None or self.email == '':
-            raise EmailFieldEmptyError
-        if self.message is None or self.message == '':
-            raise MessageFieldEmptyError
-
-    def _fill_db(self):
+    def _create_contact_form_object(self):
         ContactForm.objects.create(
             first_and_last_name=self.first_and_last_name,
             email=self.email,

@@ -4,7 +4,7 @@ from rest_framework import serializers
 from server.apps.order.errors import (
     FirstNameContainsDigitsError,
     LastNameContainsDigitsError,
-    HouseNumberContainsSpaces,
+    HouseNumberContainsSpacesError,
     PostCodeDigitsInIncorrectPlacesError,
     PostCodeIncorrectFormatError,
     PhoneContainsNotDigitsError,
@@ -79,7 +79,7 @@ class OrderPayloadSerializer(serializers.Serializer):
     def validate_house_number(self, value):
         for char in value:
             if char.isspace():
-                raise HouseNumberContainsSpaces
+                raise HouseNumberContainsSpacesError
         return value
 
     def validate_post_code(self, value):
@@ -91,4 +91,15 @@ class OrderPayloadSerializer(serializers.Serializer):
                 if i != 2:
                     raise PostCodeDigitsInIncorrectPlacesError
             i += 1
+        return value
+
+    def validate_payment_method(self, value):
+        if value != 'Przelew tradycyjny':
+            raise IncorrectPaymentMethodError
+        return value
+
+    def validate_sum(self, value):
+        for digit in value:
+            if not digit.isnumeric() or not digit == ',':
+                raise SumIsNotNumberError
         return value

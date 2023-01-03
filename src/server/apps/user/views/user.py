@@ -62,7 +62,7 @@ class ApiUserRegistrationView(viewsets.ViewSet):
     )
     def register_user(self, request, **kwargs):
         payload_serializer = UserRegistrationPayloadSerializer(data=request.data)
-        payload_serializer.is_valid(raise_exception=False)
+        payload_serializer.is_valid(raise_exception=True)
         command = UserRegistrationCommand(
             email=payload_serializer.data['email'],
             password=payload_serializer.data['password'],

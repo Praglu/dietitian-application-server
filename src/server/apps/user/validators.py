@@ -6,12 +6,12 @@ class AtLeastOneDigitOrSpecialValidator(object):
     def validate(self, password, user=None):
         if not any([letter.isdigit() for letter in password]) and not self._is_special_character(password):
             raise ValidationError(
-                _('Your password must contain at least one digit.'),
-                code='user__password_requires_digit_or_special_character',
+                _('Hasło wymaga cyfry lub znaku specjalnego'),
+                code='Hasło wymaga cyfry lub znaku specjalnego',
             )
 
     def get_help_text(self):
-        return _('Your password must contain at least one digit.')
+        return _('Hasło wymaga cyfry lub znaku specjalnego')
 
     def _is_special_character(self, password):
         if any(letter in ''.join('!@#$%^&*()-_=+[{]}"|,<.>/?;:') for letter in password):
@@ -22,24 +22,24 @@ class AtLeastOneLowerValidator(object):
     def validate(self, password, user=None):
         if not any([letter.islower() for letter in password]):
             raise ValidationError(
-                _('Your password must contain at least one lower letter.'),
-                code='user__password_requires_lowercase_letter',
+                _('Hasło wymaga małych liter'),
+                code='Hasło wymaga małych liter',
             )
 
     def get_help_text(self):
-        return _('Your password must contain at least one lower letter.')
+        return _('Hasło wymaga małych liter')
 
 
 class AtLeastOneUpperValidator(object):
     def validate(self, password, user=None):
         if not any([letter.isupper() for letter in password]):
             raise ValidationError(
-                _('Your password must contain at least one upper letter.'),
-                code='user__password_requires_uppercase_letter',
+                _('Hasło wymaga wielkich liter'),
+                code='Hasło wymaga wielkich liter',
             )
 
     def get_help_text(self):
-        return _('Your password must contain at least one upper letter.')
+        return _('Hasło wymaga wielkich liter')
 
 
 class MinimumLengthValidator(object):
@@ -50,7 +50,7 @@ class MinimumLengthValidator(object):
         if len(password) < self.min_length:
             raise ValidationError(
                 _('This password must contain at least %(min_length)d characters.'),  # noqa: WPS323
-                code='user__password_too_short',
+                code='Hasło jest za krótkie',
                 params={'min_length': self.min_length},
             )
 

@@ -13,7 +13,6 @@ from server.apps.user.errors import (
     PasswordRequiresUpperCaseLetterError,
     PasswordTooShortError,
     ServiceTermsNotApprovedError,
-    WrongPasswordRepeatError,
 )
 from server.apps.user.models import BonusUser
 from server.datastore.commands.abstract import AbstractCommand
@@ -21,10 +20,10 @@ from server.datastore.commands.abstract import AbstractCommand
 
 class UserRegistrationCommand(AbstractCommand):
     rest_errors = {
-        'user__password_too_short': PasswordTooShortError,
-        'user__password_requires_uppercase_letter': PasswordRequiresUpperCaseLetterError,
-        'user__password_requires_lowercase_letter': PasswordRequiresLowerCaseLetterError,
-        'user__password_requires_digit_or_special_character': PasswordRequiresDigitOrSpecialCharacterError,
+        'Hasło jest za krótkie': PasswordTooShortError,
+        'Hasło wymaga wielkich liter': PasswordRequiresUpperCaseLetterError,
+        'Hasło wymaga małych liter': PasswordRequiresLowerCaseLetterError,
+        'Hasło wymaga cyfry lub znaku specjalnego': PasswordRequiresDigitOrSpecialCharacterError,
     }
 
     def __init__(
@@ -54,7 +53,7 @@ class UserRegistrationCommand(AbstractCommand):
         self.are_service_terms_approved = are_service_terms_approved
 
     def register_user(self):
-        self._validate_passwords()
+        # self._validate_passwords()
         self._validate_fields()
         self._check_service_terms()
         self._create_user()
@@ -62,8 +61,6 @@ class UserRegistrationCommand(AbstractCommand):
         self.user.save()
 
     def _validate_passwords(self):
-        if self.password != self.password_repeat:
-            raise WrongPasswordRepeatError
         self._validate_password()
 
     def _validate_fields(self):
