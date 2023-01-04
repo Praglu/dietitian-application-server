@@ -37,13 +37,13 @@ class OrderPayloadSerializer(serializers.Serializer):
 
     def validate_first_name(self, value):
         for letter in value:
-            if letter.isnumeric():
+            if letter.isalpha():
                 raise FirstNameContainsDigitsError
         return value
 
     def validate_last_name(self, value):
         for letter in value:
-            if letter.isnumeric():
+            if not letter.isalpha():
                 raise LastNameContainsDigitsError
         return value
 
@@ -100,6 +100,6 @@ class OrderPayloadSerializer(serializers.Serializer):
 
     def validate_sum(self, value):
         for digit in value:
-            if not digit.isnumeric() or not digit == ',':
+            if not digit.isdigit() and not digit == ',':
                 raise SumIsNotNumberError
         return value

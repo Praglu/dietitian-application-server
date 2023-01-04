@@ -3,16 +3,16 @@ from rest_framework.exceptions import ValidationError
 
 
 class FirstNameContainsDigitsError(ValidationError):
-    default_detail = 'Imię nie może zawierać cyfr'
-    _text = _('Imię nie może zawierać cyfr')
-    _title = _('Imię nie może zawierać cyfr')
+    default_detail = 'Imię nie może zawierać cyfr ani znaków specjalnych'
+    _text = _('Imię nie może zawierać cyfr ani znaków specjalnych')
+    _title = _('Imię nie może zawierać cyfr ani znaków specjalnych')
     default_code = default_detail
 
 
 class LastNameContainsDigitsError(ValidationError):
-    default_detail = 'Nazwisko nie może zawierać cyfr'
-    _text = _('Nazwisko nie może zawierać cyfr')
-    _title = _('Nazwisko nie może zawierać cyfr')
+    default_detail = 'Nazwisko nie może zawierać cyfr ani znaków specjalnych'
+    _text = _('Nazwisko nie może zawierać cyfr ani znaków specjalnych')
+    _title = _('Nazwisko nie może zawierać cyfr ani znaków specjalnych')
     default_code = default_detail
 
 
