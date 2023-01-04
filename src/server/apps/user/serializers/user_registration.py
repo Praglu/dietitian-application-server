@@ -13,6 +13,7 @@ from server.apps.user.errors import (
     PasswordRequiresUpperCaseLetterError,
     PasswordRequiresDigitOrSpecialCharacterError,
     PasswordRequiresLowerCaseLetterError,
+    PhoneContainsNotDigitsError,
     WrongPasswordRepeatError,
 )
 
@@ -23,7 +24,7 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
     password_repeat = serializers.CharField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
-    phone = serializers.IntegerField()
+    phone = serializers.CharField()
     street = serializers.CharField()
     house_number = serializers.CharField()
     city = serializers.CharField()
@@ -56,13 +57,13 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
     
     def validate_first_name(self, value):
         for letter in value:
-            if letter.isnumeric():
+            if not letter.isalpha() and not letter.isspace():
                 raise FirstNameContainsDigitsError
         return value
 
     def validate_last_name(self, value):
         for letter in value:
-            if letter.isnumeric():
+            if not letter.isalpha() and not letter.isspace():
                 raise LastNameContainsDigitsError
         return value
     
@@ -91,3 +92,15 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
     def _is_special_character(self, password):
         if any(letter in ''.join('!@#$%^&*()-_=+[{]}"|,<.>/?;:') for letter in password):
             return True
+
+    def validate_phone(self, value):
+        for digit in value:
+            if not digit.isnumeric():
+                raise PhoneContainsNotDigitsError
+        return value
+
+    def validate_city(self, value):
+        for letter in value:
+            if not letter.isalpha() and not letter.isspace():
+                raise LastNameContainsDigitsError
+        return value

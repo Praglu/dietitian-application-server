@@ -73,16 +73,16 @@ class LastNameFieldEmptyError(ValidationError):
 
 
 class FirstNameContainsDigitsError(ValidationError):
-    default_detail = 'Imię nie może zawierać cyfr'
-    _text = _('Imię nie może zawierać cyfr')
-    _title = _('Imię nie może zawierać cyfr')
+    default_detail = 'Imię nie może zawierać cyfr lub znaków specjalnych'
+    _text = _('Imię nie może zawierać cyfr lub znaków specjalnych')
+    _title = _('Imię nie może zawierać cyfr lub znaków specjalnych')
     default_code = default_detail
 
 
 class LastNameContainsDigitsError(ValidationError):
-    default_detail = 'Nazwisko nie może zawierać cyfr'
-    _text = _('Nazwisko nie może zawierać cyfr')
-    _title = _('Nazwisko nie może zawierać cyfr')
+    default_detail = 'Nazwisko nie może zawierać cyfr lub znaków specjalnych'
+    _text = _('Nazwisko nie może zawierać cyfr lub znaków specjalnych')
+    _title = _('Nazwisko nie może zawierać cyfr lub znaków specjalnych')
     default_code = default_detail
 
 
@@ -118,4 +118,18 @@ class PostCodeDigitsInIncorrectPlacesError(ValidationError):
     default_detail = 'Kod pocztowy musi zawierać cyfry w odpowiednich miejscach'
     _text = _('Kod pocztowy musi zawierać cyfry w odpowiednich miejscach')
     _title = _('Kod pocztowy musi zawierać cyfry w odpowiednich miejscach')
+    default_code = default_detail
+
+
+class PhoneContainsNotDigitsError(ValidationError):
+    default_detail = 'Numer telefonu może zawierać tylko cyfry'
+    _text = _('Numer telefonu może zawierać tylko cyfry')
+    _title = _('Numer telefonu może zawierać tylko cyfry')
+    default_code = default_detail
+
+
+class CityContainsDigitsError(ValidationError):
+    default_detail = 'Miasto nie może zawierać cyfr lub znaków specjalnych'
+    _text = _('Miasto nie może zawierać cyfr lub znaków specjalnych')
+    _title = _('Miasto nie może zawierać cyfr lub znaków specjalnych')
     default_code = default_detail
