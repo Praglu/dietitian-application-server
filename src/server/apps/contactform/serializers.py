@@ -14,7 +14,7 @@ class ContactFormPayloadSerializer(serializers.Serializer):
 
     def validate_first_and_last_name(self, value):
         for char in value:
-            if not char.isalpha():
+            if not char.isalpha() and not char.isspace():
                 raise FirstAndLastNameContainsDigitsError
         return value
 
