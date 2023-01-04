@@ -37,7 +37,7 @@ class OrderPayloadSerializer(serializers.Serializer):
 
     def validate_first_name(self, value):
         for letter in value:
-            if letter.isalpha():
+            if not letter.isalpha():
                 raise FirstNameContainsDigitsError
         return value
 
