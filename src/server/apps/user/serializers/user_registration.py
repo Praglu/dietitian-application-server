@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from server.apps.user.errors import (
-    EmailAlreadyExistsError,
+    CityContainsDigitsError,
     FirstNameContainsDigitsError,
     HouseNumberContainsSpacesError,
     LastNameContainsDigitsError,
@@ -35,14 +35,6 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
         if data['password'] == data['password_repeat']:
             return data
         raise WrongPasswordRepeatError
-
-    def validate_email(self, value):
-        try:
-            user = User.objects.get(email=value)
-            if user:
-                raise EmailAlreadyExistsError
-        except:
-            return value
 
     def validate_password(self, value):
         if len(value) < 8:
@@ -102,5 +94,5 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
     def validate_city(self, value):
         for letter in value:
             if not letter.isalpha() and not letter.isspace():
-                raise LastNameContainsDigitsError
+                raise CityContainsDigitsError
         return value

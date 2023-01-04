@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.contrib.auth.password_validation import get_default_password_validators
 from django.core.exceptions import ValidationError
+from rest_framework import serializers
 
 from server.apps.user.enums import UserGroup
 from server.apps.user.errors import (
@@ -55,6 +56,7 @@ class UserRegistrationCommand(AbstractCommand):
     def register_user(self):
         # self._validate_passwords()
         self._validate_fields()
+        self._validate_email()
         self._check_service_terms()
         self._create_user()
         self._add_user_to_group()
@@ -70,6 +72,22 @@ class UserRegistrationCommand(AbstractCommand):
             raise FirstNameFieldEmptyError
         if not self.last_name:
             raise LastNameFieldEmptyError
+
+    def _validate_email(self):
+        self._check_email()
+        if self.check_email != None:
+            raise serializers.ValidationError(
+                detail={'email': ['Konto z podanym adresem email już istnieje']},
+                code='Konto z podanym adresem email już istnieje',
+            )
+
+    def _check_email(self):
+        try:
+            self.check_email = User.objects.get(
+                email=self.email,
+            )
+        except:
+            self.check_email = None
 
     def _check_service_terms(self):
         if not self.are_service_terms_approved:

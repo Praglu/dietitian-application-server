@@ -2,13 +2,6 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ValidationError
 
 
-class EmailAlreadyExistsError(ValidationError):
-    default_detail = 'Istnieje już konto z podanym adresem email'
-    _text = _('Istnieje już konto z podanym adresem email')
-    _title = _('Istnieje już konto z podanym adresem email')
-    default_code = default_detail
-
-
 class WrongPasswordRepeatError(ValidationError):
     default_detail = 'Powtórzone hasła się nie zgadzają'
     _text = _('Powtórzone hasła się nie zgadzają')
