@@ -46,16 +46,20 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
         if not any([letter.isdigit() for letter in value]) and not self._is_special_character(value):
             raise PasswordRequiresDigitOrSpecialCharacterError
         return value
+
+    def _is_special_character(self, password):
+        if any(letter in ''.join('!@#$%^&*()-_=+[{]}"|,<.>/?;:') for letter in password):
+            return True
     
     def validate_first_name(self, value):
         for letter in value:
-            if not letter.isalpha() and not letter.isspace():
+            if not letter.isalpha():
                 raise FirstNameContainsDigitsError
         return value
 
     def validate_last_name(self, value):
         for letter in value:
-            if not letter.isalpha() and not letter.isspace():
+            if not letter.isalpha():
                 raise LastNameContainsDigitsError
         return value
     
@@ -80,10 +84,6 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
                     raise PostCodeDigitsInIncorrectPlacesError
             i += 1
         return value
-
-    def _is_special_character(self, password):
-        if any(letter in ''.join('!@#$%^&*()-_=+[{]}"|,<.>/?;:') for letter in password):
-            return True
 
     def validate_phone(self, value):
         for digit in value:

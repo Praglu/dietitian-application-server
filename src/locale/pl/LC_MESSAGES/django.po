@@ -1,0 +1,213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-05 18:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+#: server/apps/common/validators.py:18
+msgid "Your password must contain at least one digit."
+msgstr ""
+
+#: server/apps/common/validators.py:35
+msgid "Your password must contain at least one lower letter."
+msgstr ""
+
+#: server/apps/common/validators.py:47
+msgid "Your password must contain at least one upper letter."
+msgstr ""
+
+#: server/apps/common/validators.py:61 server/apps/user/validators.py:52
+#, python-format
+msgid "This password must contain at least %(min_length)d characters."
+msgstr ""
+
+#: server/apps/common/validators.py:69
+msgid "only_digits_validation_error"
+msgstr ""
+
+#: server/apps/contactform/errors.py:7 server/apps/contactform/errors.py:8
+msgid "Imię i nazwisko nie mogą zawierać cyfr ani znaków specjalnych"
+msgstr ""
+
+#: server/apps/contactform/errors.py:14 server/apps/contactform/errors.py:15
+#: server/apps/order/errors.py:70 server/apps/order/errors.py:71
+#: server/apps/user/errors.py:91 server/apps/user/errors.py:92
+#: server/apps/user/errors.py:119 server/apps/user/errors.py:120
+msgid "Numer telefonu może zawierać tylko cyfry"
+msgstr ""
+
+#: server/apps/order/errors.py:7 server/apps/order/errors.py:8
+msgid "Imię nie może zawierać cyfr ani znaków specjalnych"
+msgstr ""
+
+#: server/apps/order/errors.py:14 server/apps/order/errors.py:15
+msgid "Nazwisko nie może zawierać cyfr ani znaków specjalnych"
+msgstr ""
+
+#: server/apps/order/errors.py:21 server/apps/order/errors.py:22
+msgid "Elementy tablicy muszą być obiektami"
+msgstr ""
+
+#: server/apps/order/errors.py:28 server/apps/order/errors.py:29
+msgid "Id produktu musi być liczbą naturalną"
+msgstr ""
+
+#: server/apps/order/errors.py:35 server/apps/order/errors.py:36
+msgid "Ilość produktu musi być liczbą naturalną"
+msgstr ""
+
+#: server/apps/order/errors.py:42 server/apps/order/errors.py:43
+msgid "Obiekt produktów musi zawierać pole id"
+msgstr ""
+
+#: server/apps/order/errors.py:49 server/apps/order/errors.py:50
+msgid "Obiekt produktów musi zawierać pole quantity"
+msgstr ""
+
+#: server/apps/order/errors.py:56 server/apps/order/errors.py:57
+msgid "Obiekt produktów może zawierać tylko pole id oraz quantity"
+msgstr ""
+
+#: server/apps/order/errors.py:63 server/apps/order/errors.py:64
+#: server/apps/user/errors.py:84 server/apps/user/errors.py:85
+msgid "Regulamin musi zostać zaakceptowany"
+msgstr ""
+
+#: server/apps/order/errors.py:77 server/apps/order/errors.py:78
+#: server/apps/user/errors.py:98 server/apps/user/errors.py:99
+msgid "Numer budynku nie może zawierać spacji"
+msgstr ""
+
+#: server/apps/order/errors.py:84 server/apps/order/errors.py:85
+#: server/apps/user/errors.py:105 server/apps/user/errors.py:106
+msgid "Format kodu pocztowego jest nieprawidłowy"
+msgstr ""
+
+#: server/apps/order/errors.py:91 server/apps/order/errors.py:92
+#: server/apps/user/errors.py:112 server/apps/user/errors.py:113
+msgid "Kod pocztowy musi zawierać cyfry w odpowiednich miejscach"
+msgstr ""
+
+#: server/apps/order/errors.py:98 server/apps/order/errors.py:99
+msgid "Suma może zawierać tylko cyfry"
+msgstr ""
+
+#: server/apps/order/errors.py:105 server/apps/order/errors.py:106
+msgid "Wybraną metodą płatności musi być przelew tradycyjny"
+msgstr ""
+
+#: server/apps/order/models.py:94
+msgid ""
+"id is your product id and quantity is how much of this product you want to "
+"buy"
+msgstr ""
+
+#: server/apps/order/models.py:103
+msgid "Sum will appear after saving this object"
+msgstr ""
+
+#: server/apps/order/validators.py:15
+msgid "Elements of the list must be dicts!"
+msgstr ""
+
+#: server/apps/order/validators.py:21
+msgid "Product id must be an integer!"
+msgstr ""
+
+#: server/apps/order/validators.py:26
+msgid "Product must have an id field!"
+msgstr ""
+
+#: server/apps/order/validators.py:32
+msgid "Product quantity must be an integer!"
+msgstr ""
+
+#: server/apps/order/validators.py:37
+msgid "Product must have a quantity field!"
+msgstr ""
+
+#: server/apps/order/validators.py:42
+msgid "Product must have only 2 fields: id and quantity!"
+msgstr ""
+
+#: server/apps/user/enums.py:12
+msgid "customer"
+msgstr ""
+
+#: server/apps/user/enums.py:13
+msgid "manager"
+msgstr ""
+
+#: server/apps/user/errors.py:7 server/apps/user/errors.py:8
+msgid "Powtórzone hasła się nie zgadzają"
+msgstr ""
+
+#: server/apps/user/errors.py:14 server/apps/user/errors.py:15
+msgid "Hasło jest za krótkie"
+msgstr ""
+
+#: server/apps/user/errors.py:21 server/apps/user/errors.py:22
+#: server/apps/user/validators.py:37 server/apps/user/validators.py:42
+msgid "Hasło wymaga wielkich liter"
+msgstr ""
+
+#: server/apps/user/errors.py:28 server/apps/user/errors.py:29
+#: server/apps/user/validators.py:25 server/apps/user/validators.py:30
+msgid "Hasło wymaga małych liter"
+msgstr ""
+
+#: server/apps/user/errors.py:35 server/apps/user/errors.py:36
+#: server/apps/user/validators.py:9 server/apps/user/validators.py:14
+msgid "Hasło wymaga cyfry lub znaku specjalnego"
+msgstr ""
+
+#: server/apps/user/errors.py:42 server/apps/user/errors.py:43
+msgid "Regulamin nie został zaakceptowany"
+msgstr ""
+
+#: server/apps/user/errors.py:49 server/apps/user/errors.py:50
+msgid "Pole email nie może być puste"
+msgstr ""
+
+#: server/apps/user/errors.py:56 server/apps/user/errors.py:57
+msgid "Pole imię nie może być puste"
+msgstr ""
+
+#: server/apps/user/errors.py:63 server/apps/user/errors.py:64
+msgid "Pole nazwisko nie może być puste"
+msgstr ""
+
+#: server/apps/user/errors.py:70 server/apps/user/errors.py:71
+msgid "Imię nie może zawierać cyfr lub znaków specjalnych"
+msgstr ""
+
+#: server/apps/user/errors.py:77 server/apps/user/errors.py:78
+msgid "Nazwisko nie może zawierać cyfr lub znaków specjalnych"
+msgstr ""
+
+#: server/apps/user/errors.py:126 server/apps/user/errors.py:127
+msgid "Miasto nie może zawierać cyfr lub znaków specjalnych"
+msgstr ""
+
+#: server/apps/user/validators.py:58
+#, python-brace-format
+msgid "Your password must contain at least {min_length} characters."
+msgstr ""
+
+msgid "Enter a valid email address"
+msgstr "Proszę wprowadzić prawidłowy adres mailowy"

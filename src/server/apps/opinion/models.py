@@ -3,12 +3,12 @@ from django.db import models
 
 class Opinion(models.Model):
     user_name = models.CharField(
-        max_length=128,
+        max_length=15,
         blank=True,
         null=True,
     )
     opinion_text = models.CharField(
-        max_length=512,
+        max_length=250,
         blank=True,
         null=True,
     )

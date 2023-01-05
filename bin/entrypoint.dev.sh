@@ -19,6 +19,9 @@ fi
 echo "Migrating database..."
 python /code/manage.py migrate --noinput
 
+echo "Compile translations..."
+python /code/manage.py compilemessages
+
 cd /code
 python manage.py runserver 0.0.0.0:8000
 

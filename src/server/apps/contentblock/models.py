@@ -30,7 +30,7 @@ class HomeContentBlock(models.Model):
         blank=True,
     )
     content = models.CharField(
-        max_length=256,
+        max_length=550,
         null=True,
         blank=True,
     )
@@ -76,12 +76,12 @@ class FirstSectionAboutContentBlock(models.Model):
         blank=True,
     )
     content_1 = models.CharField(
-        max_length=512,
+        max_length=500,
         null=True,
         blank=True,
     )
     content_2 = models.CharField(
-        max_length=256,
+        max_length=500,
         null=True,
         blank=True,
     )
@@ -97,7 +97,7 @@ class SecondSectionAboutContentBlock(models.Model):
         blank=True,
     )
     content = models.CharField(
-        max_length=256,
+        max_length=550,
         null=True,
         blank=True,
     )

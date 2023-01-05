@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from server.apps.order.errors import (
+    CityContainsDigitsError,
     FirstNameContainsDigitsError,
     LastNameContainsDigitsError,
     HouseNumberContainsSpacesError,
@@ -102,4 +103,10 @@ class OrderPayloadSerializer(serializers.Serializer):
         for digit in value:
             if not digit.isdigit() and not digit == ',':
                 raise SumIsNotNumberError
+        return value
+
+    def validate_city(self, value):
+        for letter in value:
+            if not letter.isalpha() and not letter.isspace():
+                raise CityContainsDigitsError
         return value

@@ -23,12 +23,12 @@ class Offer(models.Model):
         blank=True,
     )
     title = models.CharField(
-        max_length=128,
+        max_length=100,
         blank=True,
         null=True,
     )
     short_description = models.CharField(
-        max_length=256,
+        max_length=80,
         blank=True,
         null=True,
     )

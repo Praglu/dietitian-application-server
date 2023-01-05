@@ -215,3 +215,10 @@ EMAIL_PORT = os.getenv('EMAIL_PORT', '')
 # only one can be set true
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
+
+LANGUAGE_CODE = 'pl-pl'
+USE_I18N = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]

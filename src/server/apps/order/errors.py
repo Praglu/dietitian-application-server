@@ -105,3 +105,10 @@ class IncorrectPaymentMethodError(ValidationError):
     _text = _('Wybraną metodą płatności musi być przelew tradycyjny')
     _title = _('Wybraną metodą płatności musi być przelew tradycyjny')
     default_code = default_detail
+
+
+class CityContainsDigitsError(ValidationError):
+    default_detail = 'Miasto nie może zawierać cyfr lub znaków specjalnych'
+    _text = _('Miasto nie może zawierać cyfr lub znaków specjalnych')
+    _title = _('Miasto nie może zawierać cyfr lub znaków specjalnych')
+    default_code = default_detail

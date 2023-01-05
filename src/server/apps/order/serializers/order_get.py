@@ -44,5 +44,6 @@ class OrderSerializer(serializers.ModelSerializer):
             'additional_info',
             'payment_method',
             'sum',
+            'date_of_order',
         ]
         read_only_fields = fields
