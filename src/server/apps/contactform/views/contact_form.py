@@ -5,6 +5,7 @@ from rest_framework.exceptions import NotAuthenticated, PermissionDenied
 from rest_framework.response import Response
 
 from server.apps.common.helpers_exception import exception_schema_dict
+from server.apps.common.throttles import ContactFormThrottle
 from server.apps.contactform.serializers import ContactFormPayloadSerializer
 from server.datastore.commands.contact_form import ContactFormCommand
 
@@ -12,6 +13,7 @@ from server.datastore.commands.contact_form import ContactFormCommand
 class ContactFormView(viewsets.ViewSet):
     authentication_classes = ()
     permission_classes = ()
+    throttle_classes = (ContactFormThrottle,)
 
     @extend_schema(
         request=ContactFormPayloadSerializer,
