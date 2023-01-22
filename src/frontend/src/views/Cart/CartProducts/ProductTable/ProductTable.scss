@@ -1,0 +1,55 @@
+@use '/src/scss/index' as *;
+
+.product-table {
+    margin-bottom: 2em;
+
+    thead th {
+        font-weight: 700;
+        padding-bottom: 5px;
+
+        &:first-of-type {
+            width: 60%;
+        }
+    }
+
+    th, td {
+        border-bottom-width: 3px;
+        font-size: inherit;
+    }
+    
+    svg {
+        cursor: pointer;
+        height: 23px;
+        width: 23px;
+        margin-top: 2px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__img {
+        width: 350px;
+        height: 150px;
+        margin-right: 1em;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        width: 100%;
+    }
+
+    &__summary {
+        padding-top: 1em;
+        text-align: right;
+    }
+
+    .MuiButtonGroup-root button.MuiButtonBase-root {
+        color: #5A4FF3;
+        border-color: #5A4FF3;
+    }
+}

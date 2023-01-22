@@ -1,0 +1,20 @@
+@use '/src/scss/index' as *;
+
+.contact-form {
+    padding: 5em 2em;
+    width: 50vw;
+    margin: 0 auto;
+    @include max-width($bp-desktop) {
+        padding: 5em 2em 5em 0;
+        width: 75vw;
+    }
+    @include max-width($bp-tablet) {
+        padding: 2em;
+        margin-bottom: 2em;
+    }
+
+    textarea {
+        resize: none;
+        height: 150px;
+    }
+}

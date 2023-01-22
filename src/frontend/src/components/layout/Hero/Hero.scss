@@ -1,0 +1,29 @@
+@use '/src/scss/index' as *;
+
+.hero {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #e7e7e7;
+    @include max-width($bp-tablet) {
+        flex-direction: column-reverse;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5em 2em;
+        @include max-width($bp-tablet) {
+            padding: 2em;
+            align-items: center;
+        }
+    }
+
+    &__image {
+        max-width: 60%;
+        @include max-width($bp-tablet) {
+            max-width: 100%;
+        }
+    }
+}

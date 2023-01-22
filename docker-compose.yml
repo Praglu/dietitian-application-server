@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  # front:
-  #   build:
-  #     context: ./
-  #     dockerfile: docker/Dockerfile
-  #   ports:
-  #     - 3000:3000
+  front:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    ports:
+      - 3000:3000
   backend-api:
     build:
       context: ./

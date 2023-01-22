@@ -1,0 +1,26 @@
+@use '/src/scss/index' as *;
+
+.about .hero {
+    &__content {
+        @include max-width($bp-tablet) {
+            font-size: 0.8rem;
+        }
+    }
+
+    &__title {
+        font-size: 4rem;
+        font-weight: 500;
+        margin-bottom: 0;
+        @include max-width($bp-tablet) {
+            font-size: 3.5rem;
+        }
+    }
+
+    &__sub-title {
+        font-weight: 400;
+        line-height: 40px;
+        @include max-width($bp-tablet) {
+            line-height: 30px;
+        }
+    }
+}

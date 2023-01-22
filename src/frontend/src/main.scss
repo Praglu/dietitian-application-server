@@ -1,0 +1,164 @@
+@use '/src/scss/index' as *;
+
+body, 
+html,
+#root {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    @include max-width($bp-desktop) {
+        font-size: 17px;
+    }
+    @include max-width($bp-laptop) {
+        font-size: 16px;
+    }
+    @include max-width($bp-mobile) {
+        font-size: 15px;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: initial;
+
+    &:link,
+    &:active,
+    &:visited {
+        text-decoration: none;
+    }
+}
+
+h1, h2, h3, h4 {
+    margin-top: 0;
+}
+
+p {
+    margin: 0;
+    line-height: 30px;
+    @include max-width($bp-tablet) {
+        line-height: 28px;
+    }
+}
+
+img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin-bottom: 0.5em;
+    }
+    
+    input, textarea {
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: 500;
+        padding: 0.5em 1em;
+        margin-bottom: 1em;
+        background: #d1d8dd;
+        border: none;
+        @include max-width($bp-desktop) {
+            font-size: 1rem;
+        }
+    }
+
+    a {
+        width: fit-content;
+    }
+}
+
+.btn {
+    background-color: #5A4FF3;
+    color: white;
+    cursor: pointer;
+    padding: 0.8em 1.5em;
+    border-color: #5A4FF3;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    width: fit-content;
+    white-space: nowrap;
+    transition: .5s;
+    @include max-width($bp-tablet) {
+        padding: 0.7em 1.4em;
+    }
+
+    &:hover {
+        background-color: #6868ff;
+        border-color: #6868ff;
+    }
+
+    &--transparent {
+        background-color: transparent;
+        color: #5A4FF3;
+        transition: .5s;
+
+        &:hover {
+            background-color: #5A4FF3;
+            color: white;
+        }
+    }
+}
+
+.message {
+    text-align: center;
+}
+
+.loader {
+    z-index: 1;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 0.85rem;
+        color: red;
+        margin-bottom: 1em;
+    }
+}
+
+.form-group {
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    min-width: 100%;
+}
+
+.form-element {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.form-info {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1em;
+}

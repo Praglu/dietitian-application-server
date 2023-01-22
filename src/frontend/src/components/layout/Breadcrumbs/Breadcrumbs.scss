@@ -1,0 +1,20 @@
+@use '/src/scss/index' as *;
+
+.breadcrumbs {
+    padding: 1em 2em;
+}
+
+li.MuiBreadcrumbs-li {
+    font-family: 'Montserrat', sans-serif;
+    user-select: none;
+
+    &::first-letter,
+    a::first-letter {
+        text-transform: capitalize;
+    }
+
+    a {
+        @extend .hover-underline;
+        color: inherit;
+    }
+}

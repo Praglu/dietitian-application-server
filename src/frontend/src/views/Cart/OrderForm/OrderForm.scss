@@ -1,0 +1,96 @@
+@use '/src/scss/index' as *;
+
+.order-form {
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @include max-width($bp-tablet) {
+            flex-direction: column;
+            gap: 2em;
+        }
+    }
+
+    &__first,
+    &__second {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__first {
+        width: 40%;
+        @include max-width($bp-tablet) {
+            width: 100%;
+        }
+    }
+
+    &__second {
+        justify-content: space-between;
+        width: 35%;
+        @include max-width($bp-tablet) {
+            width: 100%;
+        }
+
+        h2 {
+            text-align: left;
+            font-weight: 600;
+        }
+    }
+
+    &__check {
+        font-size: 0.9rem;
+        margin-bottom: 2em;
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        .form-input {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+    
+            input {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+
+        input {
+            margin-right: 10px;
+        }
+    }
+
+    &__info {
+        font-size: 0.8rem;
+        margin-bottom: 2em;
+        color: #94A3B1;
+    }
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1em;
+    }
+
+    textarea {
+        resize: none;
+        height: 150px;
+        margin: 0;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5em;
+    }
+
+    .form-info {
+        justify-content: flex-start;
+    }
+}
