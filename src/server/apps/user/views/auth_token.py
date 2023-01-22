@@ -5,14 +5,14 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from server.apps.common.throttles import UserLoginThrottle
+# from server.apps.common.throttles import UserLoginThrottle
 from server.apps.user.enums import UserGroup
 
 
 class ApiObtainAuthTokenView(ObtainAuthToken):
     authentication_classes = ()
     permission_classes = ()
-    throttle_classes = (UserLoginThrottle,)
+    # throttle_classes = (UserLoginThrottle,)
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

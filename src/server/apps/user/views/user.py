@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from server.apps.common.helpers_exception import exception_schema_dict
-from server.apps.common.throttles import UserRegistrationThrottle
+# from server.apps.common.throttles import UserRegistrationThrottle
 from server.apps.user.errors import (
     EmailFieldEmptyError,
     FirstNameFieldEmptyError,
@@ -27,7 +27,7 @@ from server.datastore.commands.user_registration import UserRegistrationCommand
 class ApiUserRegistrationView(viewsets.ViewSet):
     authentication_classes = ()
     permission_classes = ()
-    throttle_classes = (UserRegistrationThrottle,)
+    # throttle_classes = (UserRegistrationThrottle,)
 
     @extend_schema(
         request=UserRegistrationPayloadSerializer,

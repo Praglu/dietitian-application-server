@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from server.apps.common.helpers_exception import exception_schema_dict
-from server.apps.common.throttles import OrderMakingThrottle
+# from server.apps.common.throttles import OrderMakingThrottle
 from server.apps.order.models import Order
 from server.apps.order.serializers.order_get import OrderSerializer
 from server.apps.order.serializers.order_post import OrderPayloadSerializer
@@ -16,7 +16,7 @@ from server.datastore.commands.new_order import MakeNewOrderCommand
 class NewOrderView(viewsets.ViewSet):
     authentication_classes = ()
     permission_classes = ()
-    throttle_classes = (OrderMakingThrottle,)
+    # throttle_classes = (OrderMakingThrottle,)
 
     @extend_schema(
         request=OrderPayloadSerializer,
