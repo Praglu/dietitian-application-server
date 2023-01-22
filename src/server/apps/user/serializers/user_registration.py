@@ -93,6 +93,6 @@ class UserRegistrationPayloadSerializer(serializers.Serializer):
 
     def validate_city(self, value):
         for letter in value:
-            if not letter.isalpha() and not letter.isspace():
+            if not letter.isalpha() and not letter.isspace() and not letter == '-':
                 raise CityContainsDigitsError
         return value

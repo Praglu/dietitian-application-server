@@ -48,6 +48,7 @@ class MakeNewOrderCommand(AbstractCommand):
 
     def _make_product_with_quantity(self):
         self.chosen_products = []
+        self.all_products_details = ''
         for product in self.products:
             product_id = product['id']
             product_quantity = product['quantity']
@@ -57,6 +58,10 @@ class MakeNewOrderCommand(AbstractCommand):
                 quantity=product_quantity,
             )
             self.chosen_products.append(chosen_product)
+            product_details = ''
+            product_details += f'{str(chosen_product.quantity)}x '
+            product_details += str(chosen_product.offer.title)
+            self.all_products_details += f'\n {product_details},'
 
     def _get_user(self):
         try:
@@ -93,6 +98,7 @@ class MakeNewOrderCommand(AbstractCommand):
             'email': self.email,
             'order_id': f'{str(self.new_order.uuid)[:12]}',
             'first_and_last_name': f'{self.first_name} {self.last_name}',
+            'order_details': self.all_products_details,
             'sum_of_order': self.sum,
         }
         EmailService.send_confirmation_order_message(context=context)

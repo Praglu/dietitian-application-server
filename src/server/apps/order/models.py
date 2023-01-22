@@ -36,6 +36,9 @@ class ProductWithQuantity(models.Model):
     )
     quantity = models.IntegerField(default=1, blank=False, null=True)
 
+    def __str__(self):
+        return f'{self.offer.title}  x{self.quantity}'
+
 
 class Order(models.Model):
     uuid = models.UUIDField(null=True, unique=True, editable=False)

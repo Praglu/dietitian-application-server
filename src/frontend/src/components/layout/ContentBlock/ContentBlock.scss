@@ -8,10 +8,10 @@
 
     &__image {
         margin: auto 2em auto 0;
-        max-width: 40%;
+        width: 40%;
         @include max-width($bp-tablet) {
             margin: 0;
-            max-width: 100%;
+            width: 100%;
         }
 
         &--reverse {

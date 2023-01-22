@@ -53,12 +53,16 @@
 
     &__image {
         position: relative;
-        max-width: 25%;
+        width: 25%;
         margin-right: 2em;
         @include max-width($bp-tablet) {
-            max-width: 40%;
+            width: 40%;
             margin-right: 1em;
         }
+    }
+
+    &__content {
+        max-width: 50%;
     }
 
     & + .footer,
