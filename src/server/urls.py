@@ -15,7 +15,6 @@ urlpatterns = [
     path('api/opinions/', include('server.apps.opinion.urls')),
     path('api/order/', include('server.apps.order.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# ]
 
 if settings.SWAGGER_ENABLED:
     urlpatterns += [

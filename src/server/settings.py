@@ -116,10 +116,10 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
     ],
-    # 'DEFAULT_THROTTLE_RATES': {
-    #     'anon': '100/hour',
-    #     'user': '200/hour'
-    # },
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/hour',
+        'user': '200/hour'
+    },
     'EXCEPTION_HANDLER': 'server.apps.common.exceptions.custom_exception_handler',
 }
 
@@ -145,21 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'server.apps.user.validators.AtLeastOneDigitOrSpecialValidator',
     },
 ]
-
-# AUTH_PASSWORD_VALIDATORS = [
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-#     },
-# ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
