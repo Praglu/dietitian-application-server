@@ -3,8 +3,6 @@
 set -o errexit
 set -o nounset
 
-# We need this line to make sure that this container is started
-# after the one with postgres:
 if [ "$DATABASE" = "postgres" ]
 then
     echo "Waiting for postgres..."
